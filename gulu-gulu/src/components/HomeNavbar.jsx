@@ -9,9 +9,6 @@ export default function HomeNavbar({
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            {/* <a href="javascript:void(0)">
-                <h2 className="text-2xl font-bold">LOGO</h2>
-              </a> */}
             <div className="md:hidden">
               <button
                 className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
@@ -66,21 +63,27 @@ export default function HomeNavbar({
               >
                 <a
                   href="javascript:void(0)"
-                  onClick={() => setSearchType("search")}
+                  onClick={() => {
+                    setSearchType("search");
+                    setNavbar(!navbar);
+                  }}
                 >
                   Normal Search
                 </a>
               </li>
               <li
                 className={
-                  searchType === "image"
+                  searchType === "images"
                     ? "text-blue-600 hover:text-blue-600"
                     : "text-black-600 hover:text-blue-600"
                 }
               >
                 <a
                   href="javascript:void(0)"
-                  onClick={() => setSearchType("image")}
+                  onClick={() => {
+                    setSearchType("images");
+                    setNavbar(!navbar);
+                  }}
                 >
                   Image
                 </a>
@@ -94,7 +97,10 @@ export default function HomeNavbar({
               >
                 <a
                   href="javascript:void(0)"
-                  onClick={() => setSearchType("news")}
+                  onClick={() => {
+                    setSearchType("news");
+                    setNavbar(!navbar);
+                  }}
                 >
                   News
                 </a>
