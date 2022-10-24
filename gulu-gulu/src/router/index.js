@@ -3,6 +3,8 @@ import { createBrowserRouter } from "react-router-dom";
 import PageLayout from "../components/PageLayout";
 import Home from "../views/Home";
 import SearchResult from "../views/SearchResult";
+import Login from "../views/Login";
+import Register from "../views/Register";
 
 const router = createBrowserRouter([
   {
@@ -20,19 +22,19 @@ const router = createBrowserRouter([
         path: "/news",
         element: <SearchResult />,
       },
-      // {
-      //   path: "/image",
-      //   element: <ImageResult />,
-      // },
-      // {
-      //   path: "/news",
-      //   element: <NewsResult />,
-      // },
     ],
   },
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
 ]);
 

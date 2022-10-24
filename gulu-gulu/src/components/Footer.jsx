@@ -8,7 +8,6 @@ export default function Footer() {
       <p>© 2022 GuluGulu</p>
       <a
         href="javascript:void(0)"
-        id="backToTop"
         className="hover:underline text-blue-700"
         onClick={backToTop}
       >

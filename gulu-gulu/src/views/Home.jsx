@@ -1,30 +1,36 @@
 import logo from "../assets/logo.png";
 import HomeNavbar from "../components/HomeNavbar";
 
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { useDebounce } from "use-debounce";
+import { useNavigate, createSearchParams } from "react-router-dom";
+import { useState } from "react";
 import { useResultContext } from "../contexts/ResultContextProvider";
 
 export default function Home() {
   const [navbar, setNavbar] = useState(false);
   const [searchType, setSearchType] = useState("search");
-
   const [text, setText] = useState("");
   const { setSearchTerm } = useResultContext();
-  const [debouncedValue] = useDebounce(text, 300);
-
-  useEffect(() => {
-    if (debouncedValue) setSearchTerm(debouncedValue);
-  }, [debouncedValue]);
 
   const navigate = useNavigate();
 
+  const navigateParams = () => {
+    return (pathname, params) => {
+      const path = {
+        pathname,
+        search: createSearchParams(params).toString(),
+      };
+      navigate(path);
+    };
+  };
+
   const submitHandler = (e) => {
+    const navigate = navigateParams();
+
     e.preventDefault();
     if (text !== "") {
       setText(e.target.value);
-      navigate(`${searchType}`);
+      navigate(searchType, { q: text });
+      setSearchTerm(text);
     }
   };
 
@@ -49,7 +55,7 @@ export default function Home() {
                 <svg
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
+                  strokeWidth="2"
                   viewBox="0 0 24 24"
                   className="w-6 h-6"
                 >
@@ -62,7 +68,6 @@ export default function Home() {
               type="text"
               className="py-2 bg-transparent rounded-md pl-12 md:w-[584px] sm:w-[400px] py-[15px] outline-none"
               placeholder="Search here"
-              autocomplete="off"
               onChange={(e) => setText(e.target.value)}
             />
           </div>
@@ -71,7 +76,7 @@ export default function Home() {
         {/* Submit button */}
         <div className="mt-4">
           <button
-            className="bg-blue-500 hover:bg-blue-700 hover:shadow-lg text-white font-bold py-2 px-4 rounded"
+            className="bg-blue-500 hover:bg-blue-600 hover:shadow-lg text-white rounded py-2 px-4"
             onClick={submitHandler}
           >
             Search

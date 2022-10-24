@@ -10,10 +10,11 @@ export default function Links() {
   const location = useLocation();
 
   return (
-    <div className="flex sm:justify-around justify-between items-center mt-4">
-      {links.map(({ url, text }) => (
+    <div className="flex sm:justify-around justify-between items-center mt-4 xs:w-[10px] xsm:w-[10px]">
+      {links.map(({ url, text }, index) => (
         <Link to={url}>
           <p
+            key={index}
             className={
               location.pathname === url
                 ? "text-blue-700 border-b-2 border-blue-700 pb-1 pr-5"
