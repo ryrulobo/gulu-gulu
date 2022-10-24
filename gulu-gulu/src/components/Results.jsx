@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 import { useResultContext } from "../contexts/ResultContextProvider";
 import Loading from "./Loading";
@@ -8,14 +8,19 @@ export default function Results() {
   const { results, getResults, isLoading, searchTerm } = useResultContext();
   const location = useLocation();
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
   useEffect(() => {
     if (searchTerm) {
       if (location.pathname === "/search") {
         getResults("organic-search");
+        setSearchParams({ q: searchTerm });
       } else if (location.pathname === "/images") {
         getResults("images");
+        setSearchParams({ q: searchTerm });
       } else if (location.pathname === "/news") {
         getResults("news");
+        setSearchParams({ q: searchTerm });
       }
     }
   }, [searchTerm, location.pathname]);

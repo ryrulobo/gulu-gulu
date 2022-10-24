@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function HomeNavbar({
   navbar,
   setNavbar,
@@ -5,7 +7,7 @@ export default function HomeNavbar({
   setSearchType,
 }) {
   return (
-    <nav className="w-full bg-white shadow">
+    <nav className="w-full bg-white shadow pt-2">
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
@@ -104,6 +106,13 @@ export default function HomeNavbar({
                 >
                   News
                 </a>
+              </li>
+              <li>
+                <Link to="/login">
+                  <button className="bg-blue-500 hover:bg-blue-600 hover:shadow-lg text-white py-2 px-4 rounded">
+                    Login
+                  </button>
+                </Link>
               </li>
             </ul>
           </div>
