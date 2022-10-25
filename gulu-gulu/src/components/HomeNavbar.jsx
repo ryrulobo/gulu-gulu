@@ -1,4 +1,6 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function HomeNavbar({
   navbar,
@@ -6,6 +8,33 @@ export default function HomeNavbar({
   searchType,
   setSearchType,
 }) {
+  const [isLogin, setIsLogin] = useState(false);
+
+  const access_token = localStorage.getItem("access_token");
+  useEffect(() => {
+    if (access_token) {
+      setIsLogin(true);
+    }
+  }, [access_token]);
+
+  const logoutAction = () => {
+    Swal.fire({
+      title: "Are you sure want to log out?",
+      showDenyButton: true,
+      confirmButtonText: "Yes",
+      denyButtonText: "No",
+    }).then((res) => {
+      if (res.isConfirmed) {
+        localStorage.clear();
+        setIsLogin(false);
+        Swal.fire({
+          icon: "success",
+          title: "Log out success",
+        });
+      }
+    });
+  };
+
   return (
     <nav className="w-full bg-white shadow pt-2">
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
@@ -108,11 +137,20 @@ export default function HomeNavbar({
                 </a>
               </li>
               <li>
-                <Link to="/login">
-                  <button className="bg-blue-500 hover:bg-blue-600 hover:shadow-lg text-white py-2 px-4 rounded">
-                    Login
+                {!isLogin ? (
+                  <Link to="/login">
+                    <button className="bg-blue-500 hover:bg-blue-600 hover:shadow-lg text-white py-2 px-4 rounded">
+                      Login
+                    </button>
+                  </Link>
+                ) : (
+                  <button
+                    className="bg-red-500 hover:bg-red-600 hover:shadow-lg text-white py-2 px-4 rounded"
+                    onClick={logoutAction}
+                  >
+                    Logout
                   </button>
-                </Link>
+                )}
               </li>
             </ul>
           </div>
