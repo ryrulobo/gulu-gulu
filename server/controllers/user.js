@@ -1,6 +1,6 @@
 const { User, Bookmark } = require("../models");
 const { comparePassword } = require("../helpers/bcrypt");
-const { signToken } = require("../helpers/jwt");
+const { signToken, decodeToken } = require("../helpers/jwt");
 
 class UserController {
   static async register(req, res, next) {
@@ -63,7 +63,8 @@ class UserController {
   static async addBookmark(req, res, next) {
     try {
       const UserId = +req.user.id;
-      const { url } = req.body;
+      const { url, datePublished, provider, thumbnail, name, description } =
+        req.body;
       if (!url) throw { name: "Url is required" };
       const checkBookmark = await Bookmark.findOne({
         where: {
@@ -73,7 +74,15 @@ class UserController {
       });
       if (checkBookmark) throw { name: "Already bookmarked" };
 
-      await Bookmark.create({ UserId, url });
+      await Bookmark.create({
+        UserId,
+        url,
+        datePublished,
+        provider,
+        thumbnail,
+        name,
+        description,
+      });
       res.status(200).json({ message: "Bookmark successfuly added" });
     } catch (err) {
       next(err);
