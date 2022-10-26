@@ -8,6 +8,7 @@ module.exports = {
       xsm: { min: "425px", max: "639px" },
       sm: "640px",
       xmm: { min: "641px", max: "685px" },
+      xml: { min: "685px", max: "767px" },
       md: "768px",
       lg: "1024px",
       xl: "1280px",

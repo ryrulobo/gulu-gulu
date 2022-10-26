@@ -5,6 +5,7 @@ import Home from "../views/Home";
 import SearchResult from "../views/SearchResult";
 import Login from "../views/Login";
 import Register from "../views/Register";
+import Bookmark from "../views/Bookmark";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/news",
         element: <SearchResult />,
+      },
+      {
+        path: "/bookmark",
+        element: <Bookmark />,
       },
     ],
   },

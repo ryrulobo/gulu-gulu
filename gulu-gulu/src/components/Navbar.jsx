@@ -1,16 +1,20 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import Search from "./Search";
 import Swal from "sweetalert2";
 
 export default function Navbar() {
+  const location = useLocation();
+
   const [isLogin, setIsLogin] = useState(false);
 
   const access_token = localStorage.getItem("access_token");
   useEffect(() => {
     if (access_token) {
       setIsLogin(true);
+    } else {
+      setIsLogin(false);
     }
   }, [access_token]);
 
@@ -29,15 +33,16 @@ export default function Navbar() {
           title: "Log out success",
         });
       }
+      window.location.reload(false);
     });
   };
 
   return (
     <div className="p-4 flex flex-wrap sm:justify-between justify-center items-center border-b border-gray-300">
       <div className="flex justify-content-between items-center space-x-3 w-screen">
-        <Link to="/">
+        <Link to="/" className="pl-1">
           <img
-            className="md:h-[35px] md:w-[175px] xs:w-[100px] sm:w-[170px] xsm:w-[100px]"
+            className="md:h-[35px] md:w-[175px] xs:w-[80px] sm:w-[170px] xsm:w-[100px]"
             src={logo}
             alt="logo"
           />
@@ -50,9 +55,16 @@ export default function Navbar() {
             </button>
           </Link>
         ) : (
-          <div className="absolute right-5 xs:right-2">
+          <div className="md:flex md:items-center sm:flex sm:items-center xml:flex xml:items-center absolute lg:right-5 md:right-0 xml:right-1 xs:right-1 xsm:right-1">
+            {location.pathname === "/news" && (
+              <Link to="/bookmark">
+                <p className="hover:underline hover:text-blue-700 mr-4 xs:mb-1 xsm:mb-1 xmm:mb-1">
+                  Bookmark
+                </p>
+              </Link>
+            )}
             <button
-              className="bg-red-500 hover:bg-red-600 hover:shadow-lg text-white py-2 px-4 rounded"
+              className="bg-red-500 hover:bg-red-600 hover:shadow-lg text-white py-2 px-3 rounded"
               onClick={logoutAction}
             >
               Logout

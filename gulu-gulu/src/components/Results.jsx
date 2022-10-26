@@ -1,5 +1,12 @@
-import { useEffect } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useLocation, useSearchParams, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import Swal from "sweetalert2";
+import { addBookmark } from "../store/actions/userActionCreator";
+
+import NormalSearch from "./NormalSearch";
+import ImageSearch from "./ImageSearch";
+import NewsSearch from "./NewsSearch";
 
 import { useResultContext } from "../contexts/ResultContextProvider";
 import Loading from "./Loading";
@@ -7,16 +14,29 @@ import Loading from "./Loading";
 export default function Results() {
   const { results, getResults, isLoading, searchTerm } = useResultContext();
   const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  const access_token = localStorage.getItem("access_token");
+
+  const [isLogin, setIsLogin] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [bookmarkData, setBookmarkData] = useState({
+    datePublished: "",
+    provider: "",
+    image: "",
+    name: "",
+    description: "",
+    url: "",
+  });
 
   useEffect(() => {
     if (searchTerm) {
       if (location.pathname === "/search") {
-        getResults("organic-search");
+        getResults("search");
         setSearchParams({ q: searchTerm });
       } else if (location.pathname === "/images") {
-        getResults("images");
+        getResults("images/details");
         setSearchParams({ q: searchTerm });
       } else if (location.pathname === "/news") {
         getResults("news");
@@ -25,77 +45,75 @@ export default function Results() {
     }
   }, [searchTerm, location.pathname]);
 
+  useEffect(() => {
+    if (access_token) {
+      setIsLogin(true);
+    }
+  }, [access_token]);
+
+  const addBookmarkAction = () => {
+    dispatch(addBookmark(bookmarkData, access_token))
+      .then((res) => {
+        if (!res.err) {
+          setBookmarkData({
+            ...bookmarkData,
+            datePublished: "",
+            provider: "",
+            image: "",
+            name: "",
+            description: "",
+            url: "",
+          });
+          Swal.fire({
+            icon: "success",
+            title: "Bookmark added",
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: res.err.response.data.message,
+          });
+          setBookmarkData({
+            ...bookmarkData,
+            datePublished: "",
+            provider: "",
+            image: "",
+            name: "",
+            description: "",
+            url: "",
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: err,
+        });
+      });
+  };
+
+  useEffect(() => {
+    if (bookmarkData.url !== "") {
+      addBookmarkAction();
+    }
+  }, [bookmarkData.url]);
+
   if (isLoading) return <Loading />;
 
   switch (location.pathname) {
     case "/search":
-      return (
-        <div className="flex flex-wrap justify-center space-y-5 sm:px-56 p-5">
-          {results.map(({ url, title, snippet }, index) => (
-            <div key={index} className="w-full">
-              <a href={url} target="_blank" rel="noreferrer">
-                {url && (
-                  <p className="text-sm">
-                    {url.length > 80 ? url.substring(0, 30) : url}
-                  </p>
-                )}
-                <p className="text-lg hover:underline text-blue-700">{title}</p>
-              </a>
-              <p>{snippet}</p>
-            </div>
-          ))}
-        </div>
-      );
+      return <NormalSearch results={results} />;
     case "/images":
-      return (
-        <div className="flex flex-wrap justify-center items-center">
-          {results.map((url, index) => (
-            <a
-              className="sm:p-3 p-5"
-              href={url}
-              key={index}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                src={url}
-                alt={searchTerm}
-                loading="lazy"
-                className="w-72 hover:scale-105 ease-in duration-100"
-              />
-              {/* <p className="w-36 break-words text-sm mt-2">{url}</p> */}
-            </a>
-          ))}
-        </div>
-      );
+      return <ImageSearch results={results} />;
     case "/news":
       return (
-        <div className="flex flex-wrap justify-center space-y-6 sm:px-56 p-5">
-          {results.map(
-            ({ date_time, image, snippet, source, title, url }, index) => (
-              <div className="grid grid-cols-2 gap-5">
-                <div key={index} className="w-full">
-                  <a href={url} target="_blank" rel="noreferrer">
-                    {source && <p className="text-sm">{source.name}</p>}
-                    <p className="text-lg hover:underline text-blue-700">
-                      {title}
-                    </p>
-                  </a>
-                  <p>{snippet}</p>
-                  <p className="text-sm">{date_time}</p>
-                </div>
-                <div>
-                  <img
-                    src={image}
-                    alt={searchTerm}
-                    loading="lazy"
-                    className="w-30 rounded"
-                  />
-                </div>
-              </div>
-            )
-          )}
-        </div>
+        <NewsSearch
+          results={results}
+          isLogin={isLogin}
+          bookmarkData={bookmarkData}
+          setBookmarkData={setBookmarkData}
+        />
       );
     default:
       return "ERROR";

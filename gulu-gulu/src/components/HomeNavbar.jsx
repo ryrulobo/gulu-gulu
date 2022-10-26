@@ -32,6 +32,7 @@ export default function HomeNavbar({
           title: "Log out success",
         });
       }
+      window.location.reload(false);
     });
   };
 

@@ -29,7 +29,7 @@ export default function Search() {
   };
 
   return (
-    <div className="relative sm:ml-48 md:ml-72 mt-0">
+    <div className="relative sm:ml-48 md:ml-72 mt-0 pl-0">
       <form onSubmit={submitHandler}>
         <div className="relative text-gray-600 rounded-full border hover:shadow-md mt-2 mb-2 xs:w-[160px] xsm:w-[180px] xmm:w-[200px] sm:w-96 w-80 h-10">
           <span className="absolute inset-y-0 left-0 flex items-center pl-2">

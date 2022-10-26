@@ -1,5 +1,11 @@
 import { serverURL } from "../../constants/url";
-import { USER_LOGIN, USER_REGISTER } from "./userActionType";
+import {
+  USER_LOGIN,
+  USER_REGISTER,
+  ADD_BOOKMARK,
+  DELETE_BOOKMARK,
+  SHOW_BOOKMARK,
+} from "./userActionType";
 import axios from "axios";
 
 // Login
@@ -61,6 +67,67 @@ export const register = (input) => {
     } catch (err) {
       const payload = { err };
       return dispatch(registerSuccess(payload));
+    }
+  };
+};
+
+// Add bookmark
+export const addBookmarkSuccess = (payload) => {
+  return {
+    type: ADD_BOOKMARK,
+    err: payload.err,
+  };
+};
+
+export const addBookmark = (payload, access_token) => {
+  return async (dispatch, getState) => {
+    try {
+      const options = {
+        method: "POST",
+        url: `${serverURL}/users/bookmark`,
+        data: {
+          datePublished: payload.datePublished,
+          provider: payload.provider,
+          thumbnail: payload.image,
+          name: payload.name,
+          description: payload.description,
+          url: payload.url,
+        },
+        headers: { access_token },
+      };
+      await axios(options);
+      const result = { err: "" };
+      return dispatch(addBookmarkSuccess(result));
+    } catch (err) {
+      const result = { err };
+      return dispatch(addBookmarkSuccess(result));
+    }
+  };
+};
+
+// Show bookmarks
+export const showBookmarkSuccess = (payload) => {
+  return {
+    type: SHOW_BOOKMARK,
+    err: payload.err,
+  };
+};
+
+export const showBookmark = (access_token) => {
+  return async (dispatch, getState) => {
+    try {
+      const options = {
+        method: "GET",
+        url: `${serverURL}/users/bookmark`,
+        headers: { access_token },
+      };
+      const { data } = await axios(options);
+      const result = { data, err: "" };
+      console.log(data, "ini dari action creator");
+      return dispatch(addBookmarkSuccess(result));
+    } catch (err) {
+      const result = { err };
+      return dispatch(addBookmarkSuccess(result));
     }
   };
 };
