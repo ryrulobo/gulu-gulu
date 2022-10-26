@@ -24,6 +24,21 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: { msg: "Url is required" },
         },
       },
+      datePublished: {
+        type: DataTypes.DATE,
+      },
+      provider: {
+        type: DataTypes.STRING,
+      },
+      thumbnail: {
+        type: DataTypes.STRING,
+      },
+      name: {
+        type: DataTypes.STRING,
+      },
+      description: {
+        type: DataTypes.TEXT,
+      },
     },
     {
       sequelize,
