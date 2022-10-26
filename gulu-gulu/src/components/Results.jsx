@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation, useSearchParams, useNavigate } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import { addBookmark } from "../store/actions/userActionCreator";
@@ -14,7 +14,6 @@ import Loading from "./Loading";
 export default function Results() {
   const { results, getResults, isLoading, searchTerm } = useResultContext();
   const location = useLocation();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const access_token = localStorage.getItem("access_token");
@@ -55,15 +54,6 @@ export default function Results() {
     dispatch(addBookmark(bookmarkData, access_token))
       .then((res) => {
         if (!res.err) {
-          setBookmarkData({
-            ...bookmarkData,
-            datePublished: "",
-            provider: "",
-            image: "",
-            name: "",
-            description: "",
-            url: "",
-          });
           Swal.fire({
             icon: "success",
             title: "Bookmark added",
@@ -73,19 +63,18 @@ export default function Results() {
             icon: "error",
             title: res.err.response.data.message,
           });
-          setBookmarkData({
-            ...bookmarkData,
-            datePublished: "",
-            provider: "",
-            image: "",
-            name: "",
-            description: "",
-            url: "",
-          });
         }
+        setBookmarkData({
+          ...bookmarkData,
+          datePublished: "",
+          provider: "",
+          image: "",
+          name: "",
+          description: "",
+          url: "",
+        });
       })
       .catch((err) => {
-        console.log(err);
         Swal.fire({
           icon: "error",
           title: err,

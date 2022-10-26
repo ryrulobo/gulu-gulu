@@ -41,7 +41,7 @@ export default function NewsSearch({
                       ...bookmarkData,
                       datePublished,
                       provider: provider[0].name,
-                      image: image.thumbnail.contentUrl,
+                      image: !image ? "" : image.thumbnail.contentUrl,
                       name,
                       description,
                       url,

@@ -110,6 +110,7 @@ export const showBookmarkSuccess = (payload) => {
   return {
     type: SHOW_BOOKMARK,
     err: payload.err,
+    data: payload.data,
   };
 };
 
@@ -123,11 +124,39 @@ export const showBookmark = (access_token) => {
       };
       const { data } = await axios(options);
       const result = { data, err: "" };
-      console.log(data, "ini dari action creator");
-      return dispatch(addBookmarkSuccess(result));
+      return dispatch(showBookmarkSuccess(result));
     } catch (err) {
       const result = { err };
-      return dispatch(addBookmarkSuccess(result));
+      return dispatch(showBookmarkSuccess(result));
+    }
+  };
+};
+
+// Delete bookmark
+export const deleteBookmarkSuccess = (payload) => {
+  return {
+    type: DELETE_BOOKMARK,
+    err: payload.err,
+  };
+};
+
+export const deleteBookmark = (url, access_token) => {
+  return async (dispatch, getState) => {
+    try {
+      const options = {
+        method: "DELETE",
+        url: `${serverURL}/users/bookmark`,
+        data: {
+          url,
+        },
+        headers: { access_token },
+      };
+      await axios(options);
+      const result = { err: "" };
+      return dispatch(deleteBookmarkSuccess(result));
+    } catch (err) {
+      const result = { err };
+      return dispatch(deleteBookmarkSuccess(result));
     }
   };
 };

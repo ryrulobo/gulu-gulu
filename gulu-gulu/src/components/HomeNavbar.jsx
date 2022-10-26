@@ -137,6 +137,11 @@ export default function HomeNavbar({
                   News
                 </a>
               </li>
+              {isLogin ? (
+                <li className="text-black-600 hover:text-blue-600">
+                  <a href="/bookmark">News Bookmark</a>
+                </li>
+              ) : null}
               <li>
                 {!isLogin ? (
                   <Link to="/login">
