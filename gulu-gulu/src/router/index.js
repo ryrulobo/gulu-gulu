@@ -6,6 +6,7 @@ import SearchResult from "../views/SearchResult";
 import Login from "../views/Login";
 import Register from "../views/Register";
 import Bookmark from "../views/Bookmark";
+import PrivateRoute from "../components/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -24,8 +25,13 @@ const router = createBrowserRouter([
         element: <SearchResult />,
       },
       {
-        path: "/bookmark",
-        element: <Bookmark />,
+        element: <PrivateRoute />,
+        children: [
+          {
+            path: "/bookmark",
+            element: <Bookmark />,
+          },
+        ],
       },
     ],
   },

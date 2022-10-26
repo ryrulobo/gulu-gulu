@@ -13,7 +13,7 @@ export default function ImageSearch({ results }) {
             src={thumbnailUrl}
             alt={"name"}
             loading="lazy"
-            className="max-w-48 max-h-56 hover:scale-105 ease-in duration-100"
+            className="max-w-36 max-h-48 hover:scale-105 ease-in duration-100"
           />
           <div className="hover:underline">
             <p className="text-sm mt-2">

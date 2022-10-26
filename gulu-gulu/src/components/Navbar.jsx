@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import Search from "./Search";
 import Swal from "sweetalert2";
 
 export default function Navbar() {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [isLogin, setIsLogin] = useState(false);
 
@@ -33,6 +34,9 @@ export default function Navbar() {
           title: "Log out success",
         });
       }
+      if (location.pathname === "/bookmark") {
+        navigate("/");
+      }
       window.location.reload(false);
     });
   };
@@ -47,7 +51,7 @@ export default function Navbar() {
             alt="logo"
           />
         </Link>
-        <Search />
+        {location.pathname !== "/bookmark" ? <Search /> : null}
         {!isLogin ? (
           <Link to="/login" className="absolute right-5 xs:right-2">
             <button className="bg-blue-500 hover:bg-blue-600 hover:shadow-lg text-white py-2 px-4 rounded">
@@ -55,7 +59,7 @@ export default function Navbar() {
             </button>
           </Link>
         ) : (
-          <div className="md:flex md:items-center sm:flex sm:items-center xml:flex xml:items-center absolute lg:right-5 md:right-0 xml:right-1 xs:right-1 xsm:right-1">
+          <div className="absolute md:flex md:items-center sm:flex sm:items-center xml:flex xml:items-center  lg:right-5 md:right-2 xml:right-1 xs:right-1 xsm:right-1 xmm:right-2">
             {location.pathname === "/news" && (
               <Link to="/bookmark">
                 <p className="hover:underline hover:text-blue-700 mr-4 xs:mb-1 xsm:mb-1 xmm:mb-1">
