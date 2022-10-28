@@ -4,15 +4,14 @@ export default function Footer() {
   };
 
   return (
-    <div className="text-center p-5 border-t border-gray-300">
+    <div
+      className="text-center p-5 border-t border-gray-300"
+      data-testid="footer"
+    >
       <p>© 2022 GuluGulu</p>
-      <a
-        href="javascript:void(0)"
-        className="hover:underline text-blue-700"
-        onClick={backToTop}
-      >
+      <button className="hover:underline text-blue-700" onClick={backToTop}>
         Back to top
-      </a>
+      </button>
     </div>
   );
 }

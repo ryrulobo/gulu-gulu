@@ -29,20 +29,22 @@ export default function Navbar() {
       if (res.isConfirmed) {
         localStorage.clear();
         setIsLogin(false);
+        if (location.pathname === "/bookmark") {
+          navigate("/");
+        }
         Swal.fire({
           icon: "success",
           title: "Log out success",
         });
       }
-      if (location.pathname === "/bookmark") {
-        navigate("/");
-      }
-      window.location.reload(false);
     });
   };
 
   return (
-    <div className="p-4 flex flex-wrap sm:justify-between justify-center items-center border-b border-gray-300">
+    <div
+      className="p-4 flex flex-wrap sm:justify-between justify-center items-center border-b border-gray-300"
+      data-testid="navbar"
+    >
       <div className="flex justify-content-between items-center space-x-3 w-screen">
         <Link to="/" className="pl-1">
           <img

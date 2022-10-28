@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import Links from "./Links";
-import { useResultContext } from "../contexts/ResultContextProvider";
+import { useResultContext } from "../contexts/ResultContextProvider.js";
 
 export default function Search() {
   const [text, setText] = useState("");
@@ -56,14 +56,6 @@ export default function Search() {
           />
         </div>
       </form>
-      {/* haven't worked */}
-      {/* {text && (
-        <button
-          type="button"
-          className="absolute top-1.5 right-4 text-2xl text-gray-500"
-          onClick={() => setText("")}
-        ></button>
-      )} */}
       <Links />
     </div>
   );

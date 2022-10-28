@@ -114,7 +114,7 @@ class UserController {
       const UserId = +req.user.id;
       const bookmarks = await Bookmark.findAll({
         where: { UserId },
-        order: [["id", "ASC"]],
+        order: [["id", "DESC"]],
       });
       res.status(200).json(bookmarks);
     } catch (err) {

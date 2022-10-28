@@ -5,5 +5,9 @@ export default function PrivateRoute() {
   if (!access_token) {
     return <Navigate to={"/"} />;
   }
-  return <Outlet />;
+  return (
+    <div data-testid="privateRoute">
+      <Outlet />
+    </div>
+  );
 }

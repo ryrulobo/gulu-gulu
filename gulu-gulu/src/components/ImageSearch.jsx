@@ -1,6 +1,9 @@
 export default function ImageSearch({ results }) {
   return (
-    <div className="flex flex-wrap justify-center items-center">
+    <div
+      className="flex flex-wrap justify-center items-center"
+      data-testid="imageSearch"
+    >
       {results.map(({ hostPageUrl, thumbnailUrl, name }, index) => (
         <a
           className="sm:p-3 p-5"
