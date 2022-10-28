@@ -48,7 +48,7 @@ export default function Search() {
           <input
             value={text}
             type="text"
-            className="py-2 bg-transparent rounded-md pl-12 md:w-[584px] sm:w-[400px] outline-none"
+            className="py-2 bg-transparent rounded-md pl-12 md:w-[380px] sm:w-[380px] xs:w-[150px] xmm:w-[190px] xsm:w-[170px] outline-none"
             placeholder="Search here"
             onChange={(e) => {
               setText(e.target.value);
