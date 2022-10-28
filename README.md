@@ -43,6 +43,10 @@ This project is created using [Bing Web Search API](https://rapidapi.com/microso
   npm start
   ```
 
+## Deploy Link
+
+[GuluGulu](https://gulu-gulu-app.web.app/)
+
 ## Screenshots
 
 ### Homepage
