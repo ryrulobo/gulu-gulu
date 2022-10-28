@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Matches snapshots 1`] = `
+<div
+  className="text-center p-5 border-t border-gray-300"
+  data-testid="footer"
+>
+  <p>
+    © 2022 GuluGulu
+  </p>
+  <button
+    className="hover:underline text-blue-700"
+    onClick={[Function]}
+  >
+    Back to top
+  </button>
+</div>
+`;

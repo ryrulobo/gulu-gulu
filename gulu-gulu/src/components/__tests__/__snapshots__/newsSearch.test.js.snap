@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Matches snapshots 1`] = `
+<div
+  className="flex flex-wrap justify-center space-y-6 sm:px-56 p-5"
+  data-testid="newsSearch"
+>
+  <div
+    className="grid grid-flow-col gap-5"
+  >
+    <div
+      className="w-full"
+    >
+      <a
+        href="test.com/news-test"
+        rel="noreferrer"
+        target="_blank"
+      >
+        <p
+          className="text-sm"
+        />
+        <p
+          className="text-lg hover:underline text-blue-700"
+        >
+          news title
+        </p>
+      </a>
+      <p>
+        this is test title
+      </p>
+      <p
+        className="text-sm mt-1"
+      >
+        15 hours ago
+      </p>
+    </div>
+    <div
+      className="flex justify-center items-center"
+    >
+      <img
+        alt="test.com/image-thumbnail"
+        className="w-30 rounded"
+        loading="lazy"
+        src="test.com/image-thumbnail"
+      />
+    </div>
+    <div
+      className="flex justify-center items-center pl-1"
+    >
+      <button
+        onClick={[Function]}
+      >
+        <svg
+          className="w-6 h-6 hover:fill-blue-500 stroke-blue-500"
+          fill="none"
+          id="icon"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+`;

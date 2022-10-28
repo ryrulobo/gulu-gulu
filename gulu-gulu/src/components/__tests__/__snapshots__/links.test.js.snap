@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Matches snapshots 1`] = `
+<div
+  className="flex sm:justify-around justify-between items-center mt-4 xs:w-[10px] xsm:w-[10px]"
+  data-testid="links"
+>
+  <a
+    href="/search"
+    onClick={[Function]}
+  >
+    <p
+      className="text-gray-700 pb-0 pr-5"
+    >
+      🔎 All
+    </p>
+  </a>
+  <a
+    href="/images"
+    onClick={[Function]}
+  >
+    <p
+      className="text-gray-700 pb-0 pr-5"
+    >
+      📸 Images
+    </p>
+  </a>
+  <a
+    href="/news"
+    onClick={[Function]}
+  >
+    <p
+      className="text-gray-700 pb-0 pr-5"
+    >
+      📰 News
+    </p>
+  </a>
+</div>
+`;
