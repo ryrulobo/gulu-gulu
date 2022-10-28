@@ -7,7 +7,7 @@ export const ResultContextProvider = ({ children }) => {
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const apiKey = "a2c49f1f0bmshfd59c1397b8164ep11c988jsn36349686a205";
+  const apiKey = process.env.REACT_APP_API_KEY;
 
   // /search, /images, /news
   const getResults = async (type) => {

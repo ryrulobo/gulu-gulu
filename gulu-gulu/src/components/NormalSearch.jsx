@@ -1,6 +1,9 @@
 export default function NormalSearch({ results }) {
   return (
-    <div className="flex flex-wrap justify-center space-y-5 sm:px-56 p-5">
+    <div
+      className="flex flex-wrap justify-center space-y-5 sm:px-56 p-5"
+      data-testid="normalSearch"
+    >
       {results.map(({ displayUrl, name, snippet }, index) => (
         <div key={index} className="w-full">
           <a href={displayUrl} target="_blank" rel="noreferrer">

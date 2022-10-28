@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Matches snapshots 1`] = `
+<nav
+  className="w-full bg-white shadow pt-2"
+  data-testid="navbar"
+>
+  <div
+    className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8"
+  >
+    <div>
+      <div
+        className="flex items-center justify-between py-3 md:py-5 md:block"
+      >
+        <div
+          className="md:hidden"
+        >
+          <button
+            className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
+            onClick={[Function]}
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 6h16M4 12h16M4 18h16"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        className="flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 hidden"
+      >
+        <ul
+          className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0"
+        >
+          <li
+            className="text-black-600 hover:text-blue-600"
+          >
+            <button
+              onClick={[Function]}
+            >
+              Normal Search
+            </button>
+          </li>
+          <li
+            className="text-black-600 hover:text-blue-600"
+          >
+            <button
+              onClick={[Function]}
+            >
+              Image
+            </button>
+          </li>
+          <li
+            className="text-black-600 hover:text-blue-600"
+          >
+            <button
+              onClick={[Function]}
+            >
+              News
+            </button>
+          </li>
+          <li>
+            <a
+              href="/login"
+              onClick={[Function]}
+            >
+              <button
+                className="bg-blue-500 hover:bg-blue-600 hover:shadow-lg text-white py-2 px-4 rounded"
+              >
+                Login
+              </button>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+`;

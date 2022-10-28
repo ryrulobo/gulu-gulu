@@ -7,11 +7,14 @@ export default function NewsSearch({
   setBookmarkData,
 }) {
   return (
-    <div className="flex flex-wrap justify-center space-y-6 sm:px-56 p-5">
+    <div
+      className="flex flex-wrap justify-center space-y-6 sm:px-56 p-5"
+      data-testid="newsSearch"
+    >
       {results.map(
         ({ datePublished, provider, image, name, description, url }, index) => (
-          <div className="grid grid-flow-col gap-5">
-            <div key={index} className="w-full">
+          <div className="grid grid-flow-col gap-5" key={index}>
+            <div className="w-full">
               <a href={url} target="_blank" rel="noreferrer">
                 {provider && provider[0] && (
                   <p className="text-sm">{provider[0].name}</p>
@@ -57,7 +60,7 @@ export default function NewsSearch({
                   >
                     <path
                       strokeLinecap="round"
-                      strokeLineJoin="round"
+                      strokeLinejoin="round"
                       strokeWidth="2"
                       d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
                     ></path>

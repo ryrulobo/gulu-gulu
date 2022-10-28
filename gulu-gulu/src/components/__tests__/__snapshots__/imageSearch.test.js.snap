@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Matches snapshots 1`] = `
+<div
+  className="flex flex-wrap justify-center items-center"
+  data-testid="imageSearch"
+>
+  <a
+    className="sm:p-3 p-5"
+    href="test.com"
+    rel="noreferrer"
+    target="_blank"
+  >
+    <img
+      alt="name"
+      className="max-w-36 max-h-48 hover:scale-105 ease-in duration-100"
+      loading="lazy"
+      src="test.com/image.png"
+    />
+    <div
+      className="hover:underline"
+    >
+      <p
+        className="text-sm mt-2"
+      >
+        this is test title
+      </p>
+      <p
+        className="text-sm"
+      >
+        test.com
+      </p>
+    </div>
+  </a>
+</div>
+`;

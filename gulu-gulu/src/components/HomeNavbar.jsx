@@ -32,12 +32,11 @@ export default function HomeNavbar({
           title: "Log out success",
         });
       }
-      window.location.reload(false);
     });
   };
 
   return (
-    <nav className="w-full bg-white shadow pt-2">
+    <nav className="w-full bg-white shadow pt-2" data-testid="navbar">
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
@@ -93,15 +92,14 @@ export default function HomeNavbar({
                     : "text-black-600 hover:text-blue-600"
                 }
               >
-                <a
-                  href="javascript:void(0)"
+                <button
                   onClick={() => {
                     setSearchType("search");
                     setNavbar(!navbar);
                   }}
                 >
                   Normal Search
-                </a>
+                </button>
               </li>
               <li
                 className={
@@ -110,15 +108,14 @@ export default function HomeNavbar({
                     : "text-black-600 hover:text-blue-600"
                 }
               >
-                <a
-                  href="javascript:void(0)"
+                <button
                   onClick={() => {
                     setSearchType("images");
                     setNavbar(!navbar);
                   }}
                 >
                   Image
-                </a>
+                </button>
               </li>
               <li
                 className={
@@ -127,15 +124,14 @@ export default function HomeNavbar({
                     : "text-black-600 hover:text-blue-600"
                 }
               >
-                <a
-                  href="javascript:void(0)"
+                <button
                   onClick={() => {
                     setSearchType("news");
                     setNavbar(!navbar);
                   }}
                 >
                   News
-                </a>
+                </button>
               </li>
               {isLogin ? (
                 <li className="text-black-600 hover:text-blue-600">
